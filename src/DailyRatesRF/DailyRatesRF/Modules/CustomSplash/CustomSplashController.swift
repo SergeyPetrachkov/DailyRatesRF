@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import SnapKit
+import Jormungandr
 
 final class CustomSplashController: UIViewController {
-  let textLabel: UILabel = {
-    let label = UILabel()
-    label.numberOfLines = 0
-    return label
+
+  private let collectionView: UICollectionView = UICollectionView(frame: .zero,
+                                                                  collectionViewLayout: UICollectionViewFlowLayout())
+
+  lazy var displayManager: SiberianCollectionViewManager? = { [weak self] in
+    guard let strongSelf = self,
+      let provider = strongSelf.presenter as? CollectionSource else {
+        return nil
+    }
+    let manager = DailyRatesDisplayManager(provider: provider,
+                                           delegate: nil,
+                                           fetchDelegate: nil,
+                                           scrollDirection: .vertical)
+    strongSelf.collectionView.delegate = manager
+    return manager
   }()
 
   var presenter: CustomSplashPresenterInput?
@@ -27,27 +40,29 @@ final class CustomSplashController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .green
-    self.view.addSubview(self.textLabel)
+    self.view.backgroundColor = .white
+    self.view.addSubview(self.collectionView)
+    self.collectionView.dataSource = self.displayManager
+    self.collectionView.backgroundColor = UIColor.white
+    self.view.addSubview(self.collectionView)
+    self.collectionView.snp.makeConstraints { make in
+      make.edges.equalTo(self.view.safeAreaLayoutGuide)
+    }
+    CurrencyItemModel.registerIn(self.collectionView)
+    self.collectionView.alwaysBounceVertical = true
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.YYYY"
+    self.title = dateFormatter.string(from: Date())
     self.presenter?.start()
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-//    let constraints = [
-////      self.textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-////      self.textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//      self.textLabel.widthAnchor.constraint(equalToConstant: 200),
-//      self.textLabel.heightAnchor.constraint(equalTo: view.heightAnchor)
-//    ]
-//    NSLayoutConstraint.activate(constraints)
-    self.textLabel.frame = self.view.bounds
   }
 }
 
 extension CustomSplashController: CustomSplashPresenterOutput {
   func didChange(_ viewModel: CustomSplash.ViewModel) {
-    self.textLabel.text = viewModel.stringRates
-    self.view.setNeedsLayout()
+    self.collectionView.reloadData()
   }
 }

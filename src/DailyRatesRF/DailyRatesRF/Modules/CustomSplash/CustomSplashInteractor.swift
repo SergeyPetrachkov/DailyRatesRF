@@ -14,24 +14,26 @@ protocol CustomSplashInteractorInput: AnyObject {
 }
 
 protocol CustomSplashInteractorOutput: AnyObject {
-  func didReceive(rates: String)
+  func didReceive(response: CustomSplash.FetchResponse)
   func didFail(with error: Error)
 }
 
 final class CustomSplashInteractor: CustomSplashInteractorInput {
   let queue = DispatchQueue(label: String(describing: CustomSplashInteractor.self))
+  let repository = DailyRatesRepository()
   weak var output: CustomSplashInteractorOutput?
 
   func fetchRates() {
     self.queue.async {
-      API.init().fetchDailyRates { result in
+      do {
+        let rates = try self.repository.fetch()
+        let viewModels = rates.map { CurrencyItemModel(dataContext: CurrencyViewModel(dataContext: $0)) }
         DispatchQueue.main.async {
-          switch result {
-          case .success(let rates):
-            self.output?.didReceive(rates: String(describing:rates))
-          case .failure(let error):
-            self.output?.didFail(with: error)
-          }
+          self.output?.didReceive(response: CustomSplash.FetchResponse(items: viewModels))
+        }
+      } catch {
+        DispatchQueue.main.async {
+          self.output?.didFail(with: error)
         }
       }
     }

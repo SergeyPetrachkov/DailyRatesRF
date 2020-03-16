@@ -10,7 +10,7 @@ import Foundation
 import SiberianSwift
 import Jormungandr
 
-protocol CustomSplashPresenterInput: ModuleLifecycle {
+protocol CustomSplashPresenterInput: ModuleLifecycle, CollectionPresenterInput {
   var view: CustomSplashController! { get set }
   var viewModel: CustomSplash.ViewModel { get set }
   var output: CustomSplashPresenterOutput? { get set }
@@ -22,7 +22,7 @@ protocol CustomSplashPresenterOutput: AnyObject {
   func didChange(_ viewModel: CustomSplash.ViewModel)
 }
 
-final class CustomSplashPresenter: CustomSplashPresenterInput {
+final class CustomSplashPresenter: CollectionPresenter, CustomSplashPresenterInput {
   weak var view: CustomSplashController!
 
   weak var output: CustomSplashPresenterOutput?
@@ -35,6 +35,7 @@ final class CustomSplashPresenter: CustomSplashPresenterInput {
 
   init(moduleIn: CustomSplash.ModuleIn) {
     self.viewModel = CustomSplash.ViewModel()
+    super.init(collectionModel: self.viewModel)
   }
 
   func start() {
@@ -49,8 +50,8 @@ final class CustomSplashPresenter: CustomSplashPresenterInput {
 }
 
 extension CustomSplashPresenter: CustomSplashInteractorOutput {
-  func didReceive(rates: String) {
-    self.viewModel.stringRates = rates
+  func didReceive(response: CustomSplash.FetchResponse) {
+    self.viewModel.items = response.items
     self.output?.didChange(self.viewModel)
   }
 

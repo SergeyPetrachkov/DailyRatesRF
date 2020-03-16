@@ -6,14 +6,26 @@
 //  Copyright © 2020 West Coast IT. All rights reserved.
 //
 
-import Foundation
+import Jormungandr
 
 enum CustomSplash {
   struct ModuleIn: IModuleIn {
 
   }
 
-  final class ViewModel {
+  struct FetchResponse {
+    let items: [CollectionItemPresenter]
+  }
+
+  final class ViewModel: CollectionViewModel {
+    var pendingState: PendingState?
+
+    var batchSize: Int = 0
+
+    var items: [CollectionItemPresenter] = []
+
+    var changeSet: [CollectionDelta] = []
+
     var stringRates: String = ""
   }
 }
