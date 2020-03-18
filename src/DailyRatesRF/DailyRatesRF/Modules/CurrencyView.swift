@@ -17,6 +17,20 @@ protocol ICurrencyValue {
   var previousRate: Double { get }
 }
 
+extension ICurrencyValue {
+  var difference: Double {
+    currentRate - previousRate
+  }
+
+  var isPositiveTrend: Bool {
+    difference >= 0
+  }
+
+  var formattedDifference: String {
+    "\(isPositiveTrend ? "+" : "")\(String(format: "%.2f", difference))"
+  }
+}
+
 struct CurrencyValue: ICurrencyValue {
   let id: String
   let title: String
@@ -43,6 +57,14 @@ struct CurrencyViewModel {
 
 final class CurrencyView: UIControl {
 
+  private struct Configurator {
+    let offset: CGFloat
+
+    static var `default`: Configurator {
+      return .init(offset: 10)
+    }
+  }
+
   var viewModel: ICurrencyValue! {
     didSet {
       guard let viewModel = self.viewModel else {
@@ -50,6 +72,8 @@ final class CurrencyView: UIControl {
       }
       self.titleLabel.text = viewModel.title
       self.rateLabel.text = "\(viewModel.currentRate) рублей"
+      self.diffLabel.text = viewModel.formattedDifference
+      self.diffLabel.textColor = viewModel.isPositiveTrend ? .green : .red
       self.setNeedsLayout()
     }
   }
@@ -58,30 +82,57 @@ final class CurrencyView: UIControl {
     let label = UILabel(frame: .zero)
     label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
     label.numberOfLines = 0
+    label.isOpaque = true
     return label
   }()
 
   private let rateLabel: UILabel = {
     let label = UILabel(frame: .zero)
-    label.font = UIFont.systemFont(ofSize: 24, weight: .light)
+    label.font = UIFont.systemFont(ofSize: 22, weight: .light)
+    label.isOpaque = true
     return label
   }()
+
+  private let diffLabel: UILabel = {
+    let label = UILabel(frame: .zero)
+    label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+    label.isOpaque = true
+    return label
+  }()
+
+  override var backgroundColor: UIColor? {
+    didSet {
+      self.titleLabel.backgroundColor = self.backgroundColor
+      self.rateLabel.backgroundColor = self.backgroundColor
+      self.diffLabel.backgroundColor = self.backgroundColor
+    }
+  }
 
   override init(frame: CGRect = .zero) {
     super.init(frame: frame)
     self.addSubview(self.titleLabel)
     self.addSubview(self.rateLabel)
+    self.addSubview(self.diffLabel)
+    self.isOpaque = true
+    let offset = Configurator.default.offset
+
     self.titleLabel.snp.makeConstraints { make in
-      make.top.equalTo(self).offset(20)
-      make.left.equalTo(self).offset(20)
-      make.bottom.equalTo(self.rateLabel).offset(-20)
-      make.right.equalTo(self).offset(-20)
+      make.top.equalTo(self).offset(offset)
+      make.left.equalTo(self).offset(offset)
+      make.right.equalTo(self).offset(-offset)
     }
     self.rateLabel.snp.makeConstraints { make in
-      make.top.equalTo(self.titleLabel).offset(20)
-      make.left.equalTo(self).offset(20)
-      make.bottom.equalTo(self).offset(-20)
-      make.right.equalTo(self).offset(-20)
+      make.top.equalTo(self.titleLabel.snp.bottom).offset(offset/2)
+      make.left.equalTo(self).offset(offset)
+      make.bottom.equalTo(self).offset(-offset)
+//      make.right.equalTo(self).offset(-offset)
+    }
+
+    self.diffLabel.snp.makeConstraints { make in
+      make.centerY.equalTo(self.rateLabel.snp.centerY)
+      make.left.equalTo(self.rateLabel.snp.right).offset(offset)
+      make.bottom.equalTo(self).offset(-offset)
+      make.right.equalTo(self).offset(-offset)
     }
   }
 
@@ -142,11 +193,12 @@ final class CurrencyCell: UICollectionViewCell {
       make.edges.equalTo(self).inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
     }
     self.currencyView.layer.cornerRadius = 5
-    self.currencyView.clipsToBounds = true
+//    self.currencyView.clipsToBounds = true
     self.currencyView.shadowOffset = CGPoint(x: 0, y: 1)
     self.currencyView.shadowRadius = 3
     self.currencyView.shadowColor = .gray
     self.currencyView.shadowOpacity = 0.5
+    self.currencyView.backgroundColor = .tertiarySystemBackground
     self.currencyView.masksLayerToBounds = true
   }
 

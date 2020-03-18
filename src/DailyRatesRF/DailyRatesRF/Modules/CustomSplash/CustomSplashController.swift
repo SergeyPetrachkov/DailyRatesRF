@@ -14,6 +14,7 @@ final class CustomSplashController: UIViewController {
 
   private let collectionView: UICollectionView = UICollectionView(frame: .zero,
                                                                   collectionViewLayout: UICollectionViewFlowLayout())
+  private let refreshControl = UIRefreshControl()
 
   lazy var displayManager: SiberianCollectionViewManager? = { [weak self] in
     guard let strongSelf = self,
@@ -40,10 +41,10 @@ final class CustomSplashController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .white
+    self.view.backgroundColor = .secondarySystemBackground
     self.view.addSubview(self.collectionView)
     self.collectionView.dataSource = self.displayManager
-    self.collectionView.backgroundColor = UIColor.white
+    self.collectionView.backgroundColor = .secondarySystemBackground
     self.view.addSubview(self.collectionView)
     self.collectionView.snp.makeConstraints { make in
       make.edges.equalTo(self.view.safeAreaLayoutGuide)
@@ -54,15 +55,25 @@ final class CustomSplashController: UIViewController {
     dateFormatter.dateFormat = "dd.MM.YYYY"
     self.title = dateFormatter.string(from: Date())
     self.presenter?.start()
+    self.refreshControl.addTarget(self, action: #selector(self.didPullToRefresh), for: .valueChanged)
+    self.collectionView.refreshControl = self.refreshControl
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
   }
+
+  @objc
+  private func didPullToRefresh() {
+    try? self.presenter?.fetchItems(reset: true)
+  }
 }
 
 extension CustomSplashController: CustomSplashPresenterOutput {
   func didChange(_ viewModel: CustomSplash.ViewModel) {
+    if self.refreshControl.isRefreshing {
+      self.refreshControl.endRefreshing()
+    }
     self.collectionView.reloadData()
   }
 }

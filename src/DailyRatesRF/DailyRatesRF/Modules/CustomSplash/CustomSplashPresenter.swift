@@ -39,13 +39,18 @@ final class CustomSplashPresenter: CollectionPresenter, CustomSplashPresenterInp
   }
 
   func start() {
-    self.interactor?.fetchRates()
+    try? self.fetchItems(reset: true)
   }
   func stop() {
 
   }
   func resume() {
 
+  }
+
+  override func fetchItems(reset: Bool) throws {
+    try super.fetchItems(reset: reset)
+    self.interactor?.fetchRates()
   }
 }
 
