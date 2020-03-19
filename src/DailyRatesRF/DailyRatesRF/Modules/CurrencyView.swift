@@ -121,11 +121,11 @@ final class CurrencyView: UIControl {
       make.left.equalTo(self).offset(offset)
       make.right.equalTo(self).offset(-offset)
     }
+
     self.rateLabel.snp.makeConstraints { make in
       make.top.equalTo(self.titleLabel.snp.bottom).offset(offset/2)
       make.left.equalTo(self).offset(offset)
       make.bottom.equalTo(self).offset(-offset)
-//      make.right.equalTo(self).offset(-offset)
     }
 
     self.diffLabel.snp.makeConstraints { make in
@@ -192,14 +192,11 @@ final class CurrencyCell: UICollectionViewCell {
     self.currencyView.snp.makeConstraints { make in
       make.edges.equalTo(self).inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
     }
+    self.isOpaque = true
     self.currencyView.layer.cornerRadius = 5
-//    self.currencyView.clipsToBounds = true
-    self.currencyView.shadowOffset = CGPoint(x: 0, y: 1)
-    self.currencyView.shadowRadius = 3
-    self.currencyView.shadowColor = .gray
-    self.currencyView.shadowOpacity = 0.5
+    self.currencyView.clipsToBounds = true
     self.currencyView.backgroundColor = .tertiarySystemBackground
-    self.currencyView.masksLayerToBounds = true
+    self.currencyView.isOpaque = true
   }
 
   @available(*, unavailable)

@@ -27,7 +27,9 @@ final class CustomSplashInteractor: CustomSplashInteractorInput {
     self.queue.async {
       do {
         let rates = try self.repository.fetch()
-        let viewModels = rates.map { CurrencyItemModel(dataContext: CurrencyViewModel(dataContext: $0)) }
+        let viewModels = rates
+          .map { CurrencyItemModel(dataContext: CurrencyViewModel(dataContext: $0)) }
+          .sorted(by: { $0.id < $1.id } )
         DispatchQueue.main.async {
           self.output?.didReceive(response: CustomSplash.FetchResponse(items: viewModels))
         }
