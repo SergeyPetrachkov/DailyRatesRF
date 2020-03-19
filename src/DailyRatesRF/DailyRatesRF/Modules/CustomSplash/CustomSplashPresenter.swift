@@ -64,3 +64,9 @@ extension CustomSplashPresenter: CustomSplashInteractorOutput {
     self.view.showToast(with: error.localizedDescription)
   }
 }
+
+extension CollectionPresenter {
+  func reorder(oldIndexPath: IndexPath, newIndexPath: IndexPath) {
+    self.collectionModel.items.swapAt(oldIndexPath.row, newIndexPath.row)
+  }
+}

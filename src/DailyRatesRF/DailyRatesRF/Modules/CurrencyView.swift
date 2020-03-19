@@ -142,7 +142,7 @@ final class CurrencyView: UIControl {
   }
 }
 
-struct CurrencyItemModel: GenericCollectionItemPresenter, ICurrencyValue {
+class CurrencyItemModel: NSObject, GenericCollectionItemPresenter, ICurrencyValue {
   var id: String {
     self.dataContext.id
   }
@@ -171,8 +171,23 @@ struct CurrencyItemModel: GenericCollectionItemPresenter, ICurrencyValue {
 
   let dataContext: CurrencyViewModel
 
+  init(dataContext: CurrencyViewModel) {
+    self.dataContext = dataContext
+  }
+
   func setup(view: CurrencyCell) {
     view.viewModel = self
+  }
+}
+
+extension CurrencyItemModel: NSItemProviderWriting {
+  static var writableTypeIdentifiersForItemProvider: [String] {
+    return []
+  }
+
+  func loadData(withTypeIdentifier typeIdentifier: String,
+                forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
+    return Progress()
   }
 }
 

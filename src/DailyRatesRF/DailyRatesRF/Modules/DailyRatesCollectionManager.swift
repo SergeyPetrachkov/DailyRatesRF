@@ -9,7 +9,46 @@
 import UIKit
 import Jormungandr
 
-class DailyRatesDisplayManager: SiberianCollectionViewManager {
+class DailyRatesDisplayManager: SiberianCollectionViewManager, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+
+  func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+    guard let destinationIndexPath = coordinator.destinationIndexPath else {
+      return
+    }
+
+    coordinator.items.forEach { dropItem in
+      guard let sourceIndexPath = dropItem.sourceIndexPath else {
+        return
+      }
+
+      collectionView.performBatchUpdates({
+        (self.provider as? CollectionPresenter)?.reorder(oldIndexPath: sourceIndexPath, newIndexPath: destinationIndexPath)
+        collectionView.deleteItems(at: [sourceIndexPath])
+        collectionView.insertItems(at: [destinationIndexPath])
+      }, completion: { _ in
+        coordinator.drop(dropItem.dragItem,
+                         toItemAt: destinationIndexPath)
+      })
+    }
+  }
+
+  func collectionView(_ collectionView: UICollectionView,
+                      dropSessionDidUpdate session: UIDropSession,
+                      withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+      return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+  }
+
+  func collectionView(_ collectionView: UICollectionView,
+                      itemsForBeginning session: UIDragSession,
+                      at indexPath: IndexPath) -> [UIDragItem] {
+    guard let item = self.provider.item(for: indexPath) else {
+      return []
+    }
+    let nsItem = NSItemProvider(object: item as! NSItemProviderWriting)
+    let dragItem = UIDragItem(itemProvider: nsItem)
+    return [dragItem]
+  }
+
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     return 2

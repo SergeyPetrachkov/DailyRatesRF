@@ -16,7 +16,7 @@ final class CustomSplashController: UIViewController {
                                                                   collectionViewLayout: UICollectionViewFlowLayout())
   private let refreshControl = UIRefreshControl()
 
-  lazy var displayManager: SiberianCollectionViewManager? = { [weak self] in
+  lazy var displayManager: DailyRatesDisplayManager? = { [weak self] in
     guard let strongSelf = self,
       let provider = strongSelf.presenter as? CollectionSource else {
         return nil
@@ -44,7 +44,10 @@ final class CustomSplashController: UIViewController {
     self.view.backgroundColor = .secondarySystemBackground
     self.view.addSubview(self.collectionView)
     self.collectionView.dataSource = self.displayManager
+    self.collectionView.dragDelegate = self.displayManager
+    self.collectionView.dropDelegate = self.displayManager
     self.collectionView.backgroundColor = .secondarySystemBackground
+    self.collectionView.dragInteractionEnabled = true
     self.view.addSubview(self.collectionView)
     self.collectionView.snp.makeConstraints { make in
       make.edges.equalTo(self.view.safeAreaLayoutGuide)
