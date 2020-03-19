@@ -205,7 +205,7 @@ final class CurrencyCell: UICollectionViewCell {
     super.init(frame: frame)
     self.addSubview(self.currencyView)
     self.currencyView.snp.makeConstraints { make in
-      make.edges.equalTo(self).inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+      make.edges.equalTo(self)
     }
     self.isOpaque = true
     self.currencyView.layer.cornerRadius = 5

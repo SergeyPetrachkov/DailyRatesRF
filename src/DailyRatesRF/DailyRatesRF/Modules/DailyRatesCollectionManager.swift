@@ -51,11 +51,11 @@ class DailyRatesDisplayManager: SiberianCollectionViewManager, UICollectionViewD
 
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 2
+    return 8
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 2
+    return 8
   }
 
   override func collectionView(_ collectionView: UICollectionView,
@@ -67,6 +67,6 @@ class DailyRatesDisplayManager: SiberianCollectionViewManager, UICollectionViewD
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       insetForSectionAt section: Int) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+    return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
   }
 }
