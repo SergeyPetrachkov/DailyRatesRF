@@ -1,5 +1,5 @@
 //
-//  CustomSplashRouter.swift
+//  RatesFeedRouter.swift
 //  DailyRatesRF
 //
 //  Created by sergey on 15.03.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CustomSplashRouterInput: AnyObject {}
-final class CustomSplashRouter: CustomSplashRouterInput {
+protocol RatesFeedRouterInput: AnyObject {}
+final class RatesFeedRouter: RatesFeedRouterInput {
   
 }

@@ -1,5 +1,5 @@
 //
-//  CustomSplashController.swift
+//  RatesFeedController.swift
 //  DailyRatesRF
 //
 //  Created by sergey on 15.03.2020.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Jormungandr
 
-final class CustomSplashController: UIViewController {
+final class RatesFeedController: UIViewController {
 
   private let collectionView: UICollectionView = UICollectionView(frame: .zero,
                                                                   collectionViewLayout: UICollectionViewFlowLayout())
@@ -29,10 +29,11 @@ final class CustomSplashController: UIViewController {
     return manager
   }()
 
-  var presenter: CustomSplashPresenterInput?
+  var presenter: RatesFeedPresenterInput?
 
-  init(moduleIn: IModuleIn) {
+  init(moduleIn: RatesFeed.ModuleIn) {
     super.init(nibName: nil, bundle: nil)
+    self.title = moduleIn.title
   }
   
   required init?(coder: NSCoder) {
@@ -56,7 +57,7 @@ final class CustomSplashController: UIViewController {
     self.collectionView.alwaysBounceVertical = true
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM.YYYY"
-    self.title = dateFormatter.string(from: Date())
+    self.navigationItem.title = dateFormatter.string(from: Date())
     self.presenter?.start()
     self.refreshControl.addTarget(self, action: #selector(self.didPullToRefresh), for: .valueChanged)
     self.collectionView.refreshControl = self.refreshControl
@@ -72,8 +73,8 @@ final class CustomSplashController: UIViewController {
   }
 }
 
-extension CustomSplashController: CustomSplashPresenterOutput {
-  func didChange(_ viewModel: CustomSplash.ViewModel) {
+extension RatesFeedController: RatesFeedPresenterOutput {
+  func didChange(_ viewModel: RatesFeed.ViewModel) {
     if self.refreshControl.isRefreshing {
       self.refreshControl.endRefreshing()
     }

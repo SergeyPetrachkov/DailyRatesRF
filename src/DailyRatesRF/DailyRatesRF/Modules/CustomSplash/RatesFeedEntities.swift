@@ -8,9 +8,9 @@
 
 import Jormungandr
 
-enum CustomSplash {
+enum RatesFeed {
   struct ModuleIn: IModuleIn {
-
+    let title: String
   }
 
   struct FetchResponse {

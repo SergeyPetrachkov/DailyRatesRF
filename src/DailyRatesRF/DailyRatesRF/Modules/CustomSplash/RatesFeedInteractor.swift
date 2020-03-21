@@ -8,20 +8,20 @@
 
 import Foundation
 
-protocol CustomSplashInteractorInput: AnyObject {
-  var output: CustomSplashInteractorOutput? { get set }
+protocol RatesFeedInteractorInput: AnyObject {
+  var output: RatesFeedInteractorOutput? { get set }
   func fetchRates()
 }
 
-protocol CustomSplashInteractorOutput: AnyObject {
-  func didReceive(response: CustomSplash.FetchResponse)
+protocol RatesFeedInteractorOutput: AnyObject {
+  func didReceive(response: RatesFeed.FetchResponse)
   func didFail(with error: Error)
 }
 
-final class CustomSplashInteractor: CustomSplashInteractorInput {
-  let queue = DispatchQueue(label: String(describing: CustomSplashInteractor.self))
+final class RatesFeedInteractor: RatesFeedInteractorInput {
+  let queue = DispatchQueue(label: String(describing: RatesFeedInteractor.self))
   let repository = DailyRatesRepository()
-  weak var output: CustomSplashInteractorOutput?
+  weak var output: RatesFeedInteractorOutput?
 
   func fetchRates() {
     self.queue.async {
@@ -31,7 +31,7 @@ final class CustomSplashInteractor: CustomSplashInteractorInput {
           .map { CurrencyItemModel(dataContext: CurrencyViewModel(dataContext: $0)) }
           .sorted(by: { $0.id < $1.id } )
         DispatchQueue.main.async {
-          self.output?.didReceive(response: CustomSplash.FetchResponse(items: viewModels))
+          self.output?.didReceive(response: RatesFeed.FetchResponse(items: viewModels))
         }
       } catch {
         DispatchQueue.main.async {

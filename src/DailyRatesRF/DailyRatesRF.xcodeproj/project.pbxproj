@@ -11,6 +11,7 @@
 		A511631E241FB54A003BE1A3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A511631D241FB54A003BE1A3 /* SnapKit */; };
 		A5116320241FBD34003BE1A3 /* DailyRatesCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */; };
 		A5116322241FBF94003BE1A3 /* DailyRatesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5116321241FBF94003BE1A3 /* DailyRatesRepository.swift */; };
+		A52F61052425F15300950A32 /* TabHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F61042425F15300950A32 /* TabHostController.swift */; };
 		A5EAC3CA241E358800B67B00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3C9241E358800B67B00 /* AppDelegate.swift */; };
 		A5EAC3CE241E358800B67B00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3CD241E358800B67B00 /* ViewController.swift */; };
 		A5EAC3D1241E358800B67B00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5EAC3CF241E358800B67B00 /* Main.storyboard */; };
@@ -18,12 +19,12 @@
 		A5EAC3D6241E358B00B67B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5EAC3D4241E358B00B67B00 /* LaunchScreen.storyboard */; };
 		A5EAC3DF241E35E300B67B00 /* Jormungandr in Frameworks */ = {isa = PBXBuildFile; productRef = A5EAC3DE241E35E300B67B00 /* Jormungandr */; };
 		A5EAC3E2241E360100B67B00 /* SiberianSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5EAC3E1241E360100B67B00 /* SiberianSwift */; };
-		A5EAC3E7241E368D00B67B00 /* CustomSplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3E6241E368D00B67B00 /* CustomSplashAssembly.swift */; };
-		A5EAC3E9241E36AD00B67B00 /* CustomSplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3E8241E36AD00B67B00 /* CustomSplashController.swift */; };
-		A5EAC3EB241E36D100B67B00 /* CustomSplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3EA241E36D100B67B00 /* CustomSplashPresenter.swift */; };
-		A5EAC3ED241E36E900B67B00 /* CustomSplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3EC241E36E900B67B00 /* CustomSplashRouter.swift */; };
-		A5EAC3EF241E36FE00B67B00 /* CustomSplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3EE241E36FE00B67B00 /* CustomSplashInteractor.swift */; };
-		A5EAC3F1241E374A00B67B00 /* CustomSplashEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3F0241E374A00B67B00 /* CustomSplashEntities.swift */; };
+		A5EAC3E7241E368D00B67B00 /* RatesFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3E6241E368D00B67B00 /* RatesFeed.swift */; };
+		A5EAC3E9241E36AD00B67B00 /* RatesFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3E8241E36AD00B67B00 /* RatesFeedController.swift */; };
+		A5EAC3EB241E36D100B67B00 /* RatesFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3EA241E36D100B67B00 /* RatesFeedPresenter.swift */; };
+		A5EAC3ED241E36E900B67B00 /* RatesFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3EC241E36E900B67B00 /* RatesFeedRouter.swift */; };
+		A5EAC3EF241E36FE00B67B00 /* RatesFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3EE241E36FE00B67B00 /* RatesFeedInteractor.swift */; };
+		A5EAC3F1241E374A00B67B00 /* RatesFeedEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3F0241E374A00B67B00 /* RatesFeedEntities.swift */; };
 		A5EAC3F4241E38EF00B67B00 /* VIPER.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3F3241E38EF00B67B00 /* VIPER.swift */; };
 		A5EAC3F7241E457100B67B00 /* DailyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3F6241E457100B67B00 /* DailyAPI.swift */; };
 		A5EAC3FA241E45BE00B67B00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5EAC3F9241E45BE00B67B00 /* Alamofire */; };
@@ -33,6 +34,7 @@
 		A511631A241FB40C003BE1A3 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRatesCollectionManager.swift; sourceTree = "<group>"; };
 		A5116321241FBF94003BE1A3 /* DailyRatesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRatesRepository.swift; sourceTree = "<group>"; };
+		A52F61042425F15300950A32 /* TabHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHostController.swift; sourceTree = "<group>"; };
 		A5EAC3C6241E358800B67B00 /* DailyRatesRF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyRatesRF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5EAC3C9241E358800B67B00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5EAC3CD241E358800B67B00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,12 +42,12 @@
 		A5EAC3D2241E358B00B67B00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5EAC3D5241E358B00B67B00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5EAC3D7241E358B00B67B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5EAC3E6241E368D00B67B00 /* CustomSplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashAssembly.swift; sourceTree = "<group>"; };
-		A5EAC3E8241E36AD00B67B00 /* CustomSplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashController.swift; sourceTree = "<group>"; };
-		A5EAC3EA241E36D100B67B00 /* CustomSplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashPresenter.swift; sourceTree = "<group>"; };
-		A5EAC3EC241E36E900B67B00 /* CustomSplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashRouter.swift; sourceTree = "<group>"; };
-		A5EAC3EE241E36FE00B67B00 /* CustomSplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashInteractor.swift; sourceTree = "<group>"; };
-		A5EAC3F0241E374A00B67B00 /* CustomSplashEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashEntities.swift; sourceTree = "<group>"; };
+		A5EAC3E6241E368D00B67B00 /* RatesFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesFeed.swift; sourceTree = "<group>"; };
+		A5EAC3E8241E36AD00B67B00 /* RatesFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesFeedController.swift; sourceTree = "<group>"; };
+		A5EAC3EA241E36D100B67B00 /* RatesFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesFeedPresenter.swift; sourceTree = "<group>"; };
+		A5EAC3EC241E36E900B67B00 /* RatesFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesFeedRouter.swift; sourceTree = "<group>"; };
+		A5EAC3EE241E36FE00B67B00 /* RatesFeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesFeedInteractor.swift; sourceTree = "<group>"; };
+		A5EAC3F0241E374A00B67B00 /* RatesFeedEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesFeedEntities.swift; sourceTree = "<group>"; };
 		A5EAC3F3241E38EF00B67B00 /* VIPER.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPER.swift; sourceTree = "<group>"; };
 		A5EAC3F6241E457100B67B00 /* DailyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A52F61032425F13D00950A32 /* TabHost */ = {
+			isa = PBXGroup;
+			children = (
+				A52F61042425F15300950A32 /* TabHostController.swift */,
+			);
+			path = TabHost;
+			sourceTree = "<group>";
+		};
 		A5EAC3BD241E358800B67B00 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		A5EAC3E3241E365E00B67B00 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A52F61032425F13D00950A32 /* TabHost */,
 				A5EAC3E5241E367D00B67B00 /* CustomSplash */,
 				A511631A241FB40C003BE1A3 /* CurrencyView.swift */,
 				A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */,
@@ -119,12 +130,12 @@
 		A5EAC3E5241E367D00B67B00 /* CustomSplash */ = {
 			isa = PBXGroup;
 			children = (
-				A5EAC3E6241E368D00B67B00 /* CustomSplashAssembly.swift */,
-				A5EAC3E8241E36AD00B67B00 /* CustomSplashController.swift */,
-				A5EAC3EA241E36D100B67B00 /* CustomSplashPresenter.swift */,
-				A5EAC3EC241E36E900B67B00 /* CustomSplashRouter.swift */,
-				A5EAC3EE241E36FE00B67B00 /* CustomSplashInteractor.swift */,
-				A5EAC3F0241E374A00B67B00 /* CustomSplashEntities.swift */,
+				A5EAC3E6241E368D00B67B00 /* RatesFeed.swift */,
+				A5EAC3E8241E36AD00B67B00 /* RatesFeedController.swift */,
+				A5EAC3EA241E36D100B67B00 /* RatesFeedPresenter.swift */,
+				A5EAC3EC241E36E900B67B00 /* RatesFeedRouter.swift */,
+				A5EAC3EE241E36FE00B67B00 /* RatesFeedInteractor.swift */,
+				A5EAC3F0241E374A00B67B00 /* RatesFeedEntities.swift */,
 			);
 			path = CustomSplash;
 			sourceTree = "<group>";
@@ -228,19 +239,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5EAC3F1241E374A00B67B00 /* CustomSplashEntities.swift in Sources */,
-				A5EAC3ED241E36E900B67B00 /* CustomSplashRouter.swift in Sources */,
+				A5EAC3F1241E374A00B67B00 /* RatesFeedEntities.swift in Sources */,
+				A5EAC3ED241E36E900B67B00 /* RatesFeedRouter.swift in Sources */,
 				A5EAC3CE241E358800B67B00 /* ViewController.swift in Sources */,
-				A5EAC3EF241E36FE00B67B00 /* CustomSplashInteractor.swift in Sources */,
-				A5EAC3E9241E36AD00B67B00 /* CustomSplashController.swift in Sources */,
+				A5EAC3EF241E36FE00B67B00 /* RatesFeedInteractor.swift in Sources */,
+				A5EAC3E9241E36AD00B67B00 /* RatesFeedController.swift in Sources */,
 				A5EAC3F4241E38EF00B67B00 /* VIPER.swift in Sources */,
 				A511631B241FB40C003BE1A3 /* CurrencyView.swift in Sources */,
 				A5116320241FBD34003BE1A3 /* DailyRatesCollectionManager.swift in Sources */,
 				A5EAC3F7241E457100B67B00 /* DailyAPI.swift in Sources */,
-				A5EAC3EB241E36D100B67B00 /* CustomSplashPresenter.swift in Sources */,
+				A52F61052425F15300950A32 /* TabHostController.swift in Sources */,
+				A5EAC3EB241E36D100B67B00 /* RatesFeedPresenter.swift in Sources */,
 				A5EAC3CA241E358800B67B00 /* AppDelegate.swift in Sources */,
 				A5116322241FBF94003BE1A3 /* DailyRatesRepository.swift in Sources */,
-				A5EAC3E7241E368D00B67B00 /* CustomSplashAssembly.swift in Sources */,
+				A5EAC3E7241E368D00B67B00 /* RatesFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     self.window = UIWindow(frame: UIScreen.main.bounds)
-    let root = UINavigationController(rootViewController: CustomSplashAssembly().createModule())
+    let tabHost = TabHostController()
+    tabHost.viewControllers = [
+      UINavigationController(
+        rootViewController: RatesFeedAssembly().createModule(moduleIn: RatesFeed.ModuleIn(title: "ЦБ РФ"))
+      )
+    ]
+    let root =  tabHost
     self.window?.rootViewController = root
     self.window?.makeKeyAndVisible()
     return true
