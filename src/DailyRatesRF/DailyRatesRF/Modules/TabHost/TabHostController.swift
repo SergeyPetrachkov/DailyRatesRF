@@ -9,5 +9,10 @@
 import UIKit
 
 final class TabHostController: UITabBarController {
-  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    Yahoo().fetchCrudeOil { result in
+      print(result)
+    }
+  }
 }
