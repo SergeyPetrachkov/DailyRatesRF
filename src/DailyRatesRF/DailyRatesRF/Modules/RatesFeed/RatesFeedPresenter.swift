@@ -54,6 +54,11 @@ final class RatesFeedPresenter: CollectionPresenter, RatesFeedPresenterInput {
     try super.fetchItems(reset: reset)
     self.interactor?.fetchRates()
   }
+
+  override func reorder(oldIndexPath: IndexPath, newIndexPath: IndexPath) {
+    super.reorder(oldIndexPath: oldIndexPath, newIndexPath: newIndexPath)
+    self.interactor?.saveOrder(ids: (self.viewModel.items as? [CurrencyItemModel])?.compactMap { $0.id } ?? [])
+  }
 }
 
 extension RatesFeedPresenter: RatesFeedInteractorOutput {
@@ -68,6 +73,7 @@ extension RatesFeedPresenter: RatesFeedInteractorOutput {
 }
 
 extension CollectionPresenter {
+  @objc
   func reorder(oldIndexPath: IndexPath, newIndexPath: IndexPath) {
     self.collectionModel.items.swapAt(oldIndexPath.row, newIndexPath.row)
   }

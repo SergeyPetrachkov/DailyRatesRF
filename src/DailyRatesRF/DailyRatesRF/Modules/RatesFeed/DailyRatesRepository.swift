@@ -36,3 +36,10 @@ final class DailyRatesRepository {
     return output
   }
 }
+
+final class RatesOrderRepository {
+  typealias CurrencyId = String
+
+  @UserDefault("ratesOrder", defaultValue: [])
+  var order: [CurrencyId]
+}
