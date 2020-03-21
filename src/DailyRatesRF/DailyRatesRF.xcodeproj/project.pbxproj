@@ -11,6 +11,7 @@
 		A511631E241FB54A003BE1A3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A511631D241FB54A003BE1A3 /* SnapKit */; };
 		A5116320241FBD34003BE1A3 /* DailyRatesCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */; };
 		A5116322241FBF94003BE1A3 /* DailyRatesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5116321241FBF94003BE1A3 /* DailyRatesRepository.swift */; };
+		A52AC7672425F6C800F0FD7D /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AC7662425F6C800F0FD7D /* UserDefaultsWrapper.swift */; };
 		A52F61052425F15300950A32 /* TabHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F61042425F15300950A32 /* TabHostController.swift */; };
 		A5EAC3CA241E358800B67B00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3C9241E358800B67B00 /* AppDelegate.swift */; };
 		A5EAC3CE241E358800B67B00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EAC3CD241E358800B67B00 /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 		A511631A241FB40C003BE1A3 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRatesCollectionManager.swift; sourceTree = "<group>"; };
 		A5116321241FBF94003BE1A3 /* DailyRatesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRatesRepository.swift; sourceTree = "<group>"; };
+		A52AC7662425F6C800F0FD7D /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		A52F61042425F15300950A32 /* TabHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHostController.swift; sourceTree = "<group>"; };
 		A5EAC3C6241E358800B67B00 /* DailyRatesRF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyRatesRF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5EAC3C9241E358800B67B00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,10 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				A52F61032425F13D00950A32 /* TabHost */,
-				A5EAC3E5241E367D00B67B00 /* CustomSplash */,
-				A511631A241FB40C003BE1A3 /* CurrencyView.swift */,
-				A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */,
-				A5116321241FBF94003BE1A3 /* DailyRatesRepository.swift */,
+				A5EAC3E5241E367D00B67B00 /* RatesFeed */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -127,7 +126,7 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		A5EAC3E5241E367D00B67B00 /* CustomSplash */ = {
+		A5EAC3E5241E367D00B67B00 /* RatesFeed */ = {
 			isa = PBXGroup;
 			children = (
 				A5EAC3E6241E368D00B67B00 /* RatesFeed.swift */,
@@ -136,14 +135,18 @@
 				A5EAC3EC241E36E900B67B00 /* RatesFeedRouter.swift */,
 				A5EAC3EE241E36FE00B67B00 /* RatesFeedInteractor.swift */,
 				A5EAC3F0241E374A00B67B00 /* RatesFeedEntities.swift */,
+				A511631A241FB40C003BE1A3 /* CurrencyView.swift */,
+				A511631F241FBD34003BE1A3 /* DailyRatesCollectionManager.swift */,
+				A5116321241FBF94003BE1A3 /* DailyRatesRepository.swift */,
 			);
-			path = CustomSplash;
+			path = RatesFeed;
 			sourceTree = "<group>";
 		};
 		A5EAC3F2241E38DD00B67B00 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				A5EAC3F3241E38EF00B67B00 /* VIPER.swift */,
+				A52AC7662425F6C800F0FD7D /* UserDefaultsWrapper.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5EAC3F1241E374A00B67B00 /* RatesFeedEntities.swift in Sources */,
+				A52AC7672425F6C800F0FD7D /* UserDefaultsWrapper.swift in Sources */,
 				A5EAC3ED241E36E900B67B00 /* RatesFeedRouter.swift in Sources */,
 				A5EAC3CE241E358800B67B00 /* ViewController.swift in Sources */,
 				A5EAC3EF241E36FE00B67B00 /* RatesFeedInteractor.swift in Sources */,

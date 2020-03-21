@@ -41,9 +41,11 @@ final class RatesFeedPresenter: CollectionPresenter, RatesFeedPresenterInput {
   func start() {
     try? self.fetchItems(reset: true)
   }
+
   func stop() {
 
   }
+
   func resume() {
 
   }
