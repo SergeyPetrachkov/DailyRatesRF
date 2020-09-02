@@ -16,16 +16,15 @@ final class RatesFeedController: UIViewController {
                                                                   collectionViewLayout: UICollectionViewFlowLayout())
   private let refreshControl = UIRefreshControl()
 
-  lazy var displayManager: DailyRatesDisplayManager? = { [weak self] in
-    guard let strongSelf = self,
-      let provider = strongSelf.presenter as? CollectionSource else {
+  lazy var displayManager: DailyRatesDisplayManager? = {
+    guard let provider = self.presenter as? CollectionSource else {
         return nil
     }
     let manager = DailyRatesDisplayManager(provider: provider,
                                            delegate: nil,
                                            fetchDelegate: nil,
                                            scrollDirection: .vertical)
-    strongSelf.collectionView.delegate = manager
+    self.collectionView.delegate = manager
     return manager
   }()
 

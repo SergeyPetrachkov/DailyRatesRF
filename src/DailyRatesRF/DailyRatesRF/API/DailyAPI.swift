@@ -20,7 +20,7 @@ struct DailyRates: Codable {
   let date, previousDate: String
   let previousURL: String
   let timestamp: String
-  let valute: [String: Valute]
+  let valute: [String: CBCurrencyDto]
 
   enum CodingKeys: String, CodingKey {
     case date = "Date"
@@ -31,17 +31,8 @@ struct DailyRates: Codable {
   }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseValute { response in
-//     if let valute = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Valute
-struct Valute: Codable {
+struct CBCurrencyDto: Codable {
   let id, numCode, charCode: String
   let nominal: Int
   let name: String
@@ -84,29 +75,3 @@ func newJSONEncoder() -> JSONEncoder {
   }
   return encoder
 }
-
-// MARK: - Alamofire response handlers
-//
-//extension DataRequest {
-//  fileprivate func decodableResponseSerializer<T: Decodable>() -> DataResponseSerializer<T> {
-//    return DataResponseSerializer { _, response, data, error in
-//      guard error == nil else { return .failure(error!) }
-//
-//      guard let data = data else {
-//        return .failure(AFError.responseSerializationFailed(reason: .inputDataNil))
-//      }
-//
-//      return Result { try newJSONDecoder().decode(T.self, from: data) }
-//    }
-//  }
-//
-//  @discardableResult
-//  fileprivate func responseDecodable<T: Decodable>(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
-//    return response(queue: queue, responseSerializer: decodableResponseSerializer(), completionHandler: completionHandler)
-//  }
-//
-//  @discardableResult
-//  func responseDailyRates(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<DailyRates>) -> Void) -> Self {
-//    return responseDecodable(queue: queue, completionHandler: completionHandler)
-//  }
-//}
